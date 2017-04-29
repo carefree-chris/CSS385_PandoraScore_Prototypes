@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 401021153}
   - component: {fileID: 401021152}
   m_Layer: 5
-  m_Name: Prototype6_Button
+  m_Name: PrototypeCameraTransitioning_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 451877373}
   - component: {fileID: 451877372}
   m_Layer: 5
-  m_Name: Prototype1_Button
+  m_Name: PrototypeUI_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 716391456}
   - component: {fileID: 716391455}
   m_Layer: 5
-  m_Name: Prototype2_Button
+  m_Name: PrototypeAudio_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 1058107621}
   - component: {fileID: 1058107620}
   m_Layer: 5
-  m_Name: Prototype4_Button
+  m_Name: PrototypeVictoryDefeat_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 1093099346}
   - component: {fileID: 1093099345}
   m_Layer: 5
-  m_Name: Prototype7_Button
+  m_Name: PrototypeAI_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2170,7 +2170,7 @@ GameObject:
   - component: {fileID: 1860268505}
   - component: {fileID: 1860268504}
   m_Layer: 5
-  m_Name: Prototype5_Button
+  m_Name: PrototypeCharControls_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2292,7 +2292,7 @@ GameObject:
   - component: {fileID: 1933438337}
   - component: {fileID: 1933438336}
   m_Layer: 5
-  m_Name: Prototype3_Button
+  m_Name: PrototypeObjectInteraction_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
