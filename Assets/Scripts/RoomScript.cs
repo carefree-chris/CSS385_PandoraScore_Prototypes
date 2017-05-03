@@ -94,7 +94,7 @@ public class RoomScript : MonoBehaviour {
         {
             for(int j = 0; j < Tiles[i].Length; j++)
             {
-                float num = Random.Range(0f, 4f);
+                float num = Random.Range(0f, 10f);
 
                 if(num < 1)
                 {

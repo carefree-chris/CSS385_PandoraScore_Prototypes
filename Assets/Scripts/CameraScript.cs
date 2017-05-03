@@ -10,6 +10,8 @@ public class CameraScript : MonoBehaviour {
     int curRow;
     int curCol;
 
+    public GameObject player;
+
     public RoomManager RoomManager;
 
 	// Use this for initialization
@@ -24,56 +26,95 @@ public class CameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (curCol < collumns - 1)
-            {
-                RoomManager.EnableRoom(curRow, curCol + 1);
-                RoomManager.DisableRoom(curRow, curCol);
-                curCol++;
-                //TransitionRoom(curRow, curCol);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    if (curCol < collumns - 1)
+        //    {
+        //        RoomManager.EnableRoom(curRow, curCol + 1);
+        //        RoomManager.DisableRoom(curRow, curCol);
+        //        curCol++;
+        //        //TransitionRoom(curRow, curCol);
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (curCol > 0)
-            {
-                RoomManager.EnableRoom(curRow, curCol - 1);
-                RoomManager.DisableRoom(curRow, curCol);
-                curCol--;
-                //TransitionRoom(curRow, curCol);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    if (curCol > 0)
+        //    {
+        //        RoomManager.EnableRoom(curRow, curCol - 1);
+        //        RoomManager.DisableRoom(curRow, curCol);
+        //        curCol--;
+        //        //TransitionRoom(curRow, curCol);
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (curRow > 0)
-            {
-                RoomManager.EnableRoom(curRow - 1, curCol);
-                RoomManager.DisableRoom(curRow, curCol);
-                curRow--;
-                //TransitionRoom(curRow, curCol);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    if (curRow > 0)
+        //    {
+        //        RoomManager.EnableRoom(curRow - 1, curCol);
+        //        RoomManager.DisableRoom(curRow, curCol);
+        //        curRow--;
+        //        //TransitionRoom(curRow, curCol);
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    if (curRow < (rows - 1))
+        //    {
+        //        RoomManager.EnableRoom(curRow + 1, curCol);
+        //        RoomManager.DisableRoom(curRow, curCol);
+        //        curRow++;
+        //        //TransitionRoom(curRow, curCol);
+        //    }
+        //}
+        Vector3 t = Vector3.Lerp(transform.position, RoomManager.getRoomTransform(curRow, curCol).position, .4f);
+        t.z = -10f;
+        transform.position = t;
+    }
+
+    public void TransitionRoom(int num)
+    {
+        if (num == 0)
         {
             if (curRow < (rows - 1))
             {
                 RoomManager.EnableRoom(curRow + 1, curCol);
                 RoomManager.DisableRoom(curRow, curCol);
                 curRow++;
-                //TransitionRoom(curRow, curCol);
+                player.transform.position += new Vector3(0, -200, 0);
             }
         }
-        Vector3 t = Vector3.Lerp(transform.position, RoomManager.getRoomTransform(curRow, curCol).position, .6f);
-        t.z = -10f;
-        transform.position = t;
-    }
-
-    void TransitionRoom(int i , int j)
-    {
-        
+        else if (num == 1)
+        {
+            if (curCol > 0)
+            {
+                RoomManager.EnableRoom(curRow, curCol - 1);
+                RoomManager.DisableRoom(curRow, curCol);
+                curCol--;
+                player.transform.position += new Vector3(-200, 0, 0);
+            }
+        }
+        else if(num == 2)
+        {
+            if (curRow > 0)
+            {
+                RoomManager.EnableRoom(curRow - 1, curCol);
+                RoomManager.DisableRoom(curRow, curCol);
+                curRow--;
+                player.transform.position += new Vector3(0, 200, 0);
+            }
+        }
+        else if (num == 3)
+        {
+            if (curCol < collumns - 1)
+            {
+                RoomManager.EnableRoom(curRow, curCol + 1);
+                RoomManager.DisableRoom(curRow, curCol);
+                curCol++;
+                player.transform.position += new Vector3(200, 0, 0);
+            }
+        }
     }
 }
