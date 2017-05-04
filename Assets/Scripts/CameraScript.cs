@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraScript : MonoBehaviour {
 
@@ -69,6 +70,11 @@ public class CameraScript : MonoBehaviour {
         //        //TransitionRoom(curRow, curCol);
         //    }
         //}
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
         Vector3 t = Vector3.Lerp(transform.position, RoomManager.getRoomTransform(curRow, curCol).position, .4f);
         t.z = -10f;
         transform.position = t;
