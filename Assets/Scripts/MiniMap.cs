@@ -20,7 +20,7 @@ public class MiniMap : MonoBehaviour {
         {
             Vector3 v3 = Input.mousePosition;
             v3 = mm.ScreenToWorldPoint(v3);
-            v3.z = 0;
+            v3.z = -1;
 
             EnemyMM.transform.position = v3;
         }
