@@ -9,3 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
   - enabled: 1
     path: Assets/Scenes/MonsterAIAndPathfinding.unity
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+  - enabled: 1
+    path: Assets/Scenes/Over.unity
+  - enabled: 1
+    path: Assets/Scenes/RoomPrototype.unity
+  - enabled: 1
+    path: Assets/Scenes/SoundPrototype.unity
