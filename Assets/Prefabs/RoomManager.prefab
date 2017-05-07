@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78cb4934708cdb40888b53a0350fd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sizeModifier: 0.05
   collumns: 5
   rows: 5
   actRow: 0

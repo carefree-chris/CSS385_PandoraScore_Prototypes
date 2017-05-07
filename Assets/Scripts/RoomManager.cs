@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
 
+    public float sizeModifier;
     public int collumns = 5;
     public int rows = 5;
     public int actRow = 0;
@@ -30,9 +31,12 @@ public class RoomManager : MonoBehaviour {
                 string s = i + " " + j;
                 Rooms[i][j].name = s;
 
-                Rooms[i][j].transform.position = new Vector3((j - 2) * 1500, i * -1000, 0);
 
-                if(i == actRow && j == actCol)
+                //TODO Commented out section is original, uncomment and delete lines below to return to original condition
+                //Rooms[i][j].transform.position = new Vector3((j - 2) * 1500, i * -1000, 0);
+                Rooms[i][j].transform.position = new Vector3(((j - 2) * 1500) * sizeModifier, (i * -1000) * sizeModifier, 0);
+
+                if (i == actRow && j == actCol)
                 {
                     //RoomScript.DisableRoom(i, j); todo?
                     Rooms[i][j].SetActive(true);
