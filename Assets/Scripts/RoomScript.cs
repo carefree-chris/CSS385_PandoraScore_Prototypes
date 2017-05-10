@@ -179,15 +179,15 @@ public class RoomScript : MonoBehaviour
                 int num = 0;
 
                 if (j < 11) {
-                    if (c[(i * 12) + (j + 1)].Equals(r.color))
+                    if (Tiles[i][j + 1].IsOccupied == false && c[(i * 12) + (j + 1)].Equals(r.color))
                     {
                         num = 1;
                         if (i < 6)
                         {
-                            if(c[((i + 1) * 12) + (j)].Equals(r.color))
+                            if(Tiles[i + 1][j].IsOccupied == false && c[((i + 1) * 12) + (j)].Equals(r.color))
                             {
                                 num = 3;
-                                if(c[((i + 1) * 12) + (j + 1)].Equals(r.color))
+                                if(Tiles[i + 1][j + 1].IsOccupied == false && c[((i + 1) * 12) + (j + 1)].Equals(r.color))
                                 {
                                     num = 4;
                                 }
@@ -197,7 +197,7 @@ public class RoomScript : MonoBehaviour
                 }
                 else if (i < 6)
                 {
-                    if (c[((i + 1) * 12) + (j)].Equals(r.color))
+                    if (Tiles[i + 1][j].IsOccupied == false && c[((i + 1) * 12) + (j)].Equals(r.color))
                     {
                         num = 2;
                     }
@@ -218,7 +218,11 @@ public class RoomScript : MonoBehaviour
         {
             num = 3;
         }
-        if(num == 3 && room.onebytwo.Length == 0 || num == 2 && room.onebytwo.Length == 0)
+        if(num == 3 && room.onebytwo.Length == 0)
+        {
+            num = 1;
+        }
+        if(num == 2 && room.onebytwo.Length == 0)
         {
             num = 1;
         }
@@ -236,7 +240,7 @@ public class RoomScript : MonoBehaviour
             Tiles[i][j + 1].IsOccupied = true;
             Tiles[i + 1][j + 1].IsOccupied = true;
 
-            g.transform.localPosition = new Vector3(0, 0, 0);
+            g.transform.localPosition = new Vector3(.5f, .5f, 0);
             g.transform.rotation = new Quaternion(0, 0, 0, 0);
 
             if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
@@ -248,15 +252,18 @@ public class RoomScript : MonoBehaviour
         {
             int n = 0;
             if (num == 3)
-                n = Random.Range(0, 2);
+                n = Random.Range(0, 3);
             else if (num == 2)
             {
-                n = Random.Range(0, 1);
+                n = Random.Range(0, 2);
                 n *= 2;
             }
             else
-                n = Random.Range(0, num);
-            if(n == 0)
+                n = Random.Range(0, num + 1);
+
+            Debug.Log(i + " " + j + " " + n);
+
+            if (n == 0)
             {
                 GameObject g = Instantiate(room.onebyone[Random.Range(0, room.onebyone.Length - 1)]);
                 g.transform.parent = Tiles[i][j].Tile.transform;
@@ -275,9 +282,10 @@ public class RoomScript : MonoBehaviour
                 GameObject g = Instantiate(room.twobyone[Random.Range(0, room.twobyone.Length - 1)]);
                 g.transform.parent = Tiles[i][j].Tile.transform;
                 Tiles[i][j].IsOccupied = true;
-                Tiles[i + 1][j].IsOccupied = true;
 
-                g.transform.localPosition = new Vector3(0, 0, 0);
+                Tiles[i][j+1].IsOccupied = true;
+
+                g.transform.localPosition = new Vector3(.5f, 0, 0);
                 g.transform.rotation = new Quaternion(0, 0, 0, 0);
 
                 if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
@@ -290,9 +298,9 @@ public class RoomScript : MonoBehaviour
                 GameObject g = Instantiate(room.onebytwo[Random.Range(0, room.onebytwo.Length - 1)]);
                 g.transform.parent = Tiles[i][j].Tile.transform;
                 Tiles[i][j].IsOccupied = true;
-                Tiles[i][j+1].IsOccupied = true;
+                Tiles[i+1][j].IsOccupied = true;
 
-                g.transform.localPosition = new Vector3(0, 0, 0);
+                g.transform.localPosition = new Vector3(0, .5f, 0);
                 g.transform.rotation = new Quaternion(0, 0, 0, 0);
 
                 if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
