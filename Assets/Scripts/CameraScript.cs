@@ -89,7 +89,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow + 1, curCol);
                 RoomManager.DisableRoom(curRow, curCol);
                 curRow++;
-                player.transform.position += new Vector3(0, -200, 0);
+                player.transform.position += new Vector3(0, -50, 0);
             }
         }
         else if (num == 1)
@@ -99,7 +99,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow, curCol - 1);
                 RoomManager.DisableRoom(curRow, curCol);
                 curCol--;
-                player.transform.position += new Vector3(-200, 0, 0);
+                player.transform.position += new Vector3(-50, 0, 0);
             }
         }
         else if(num == 2)
@@ -109,7 +109,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow - 1, curCol);
                 RoomManager.DisableRoom(curRow, curCol);
                 curRow--;
-                player.transform.position += new Vector3(0, 200, 0);
+                player.transform.position += new Vector3(0, 50, 0);
             }
         }
         else if (num == 3)
@@ -119,7 +119,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow, curCol + 1);
                 RoomManager.DisableRoom(curRow, curCol);
                 curCol++;
-                player.transform.position += new Vector3(200, 0, 0);
+                player.transform.position += new Vector3(50, 0, 0);
             }
         }
     }
