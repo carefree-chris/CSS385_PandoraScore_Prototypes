@@ -20,6 +20,7 @@ public class RoomScript : MonoBehaviour
 
     public GameObject Door;
 
+    private GameObject[] Colliders;
     private GameObject[] Doors;
     private GameObject[][] Tiles;
 
@@ -29,34 +30,6 @@ public class RoomScript : MonoBehaviour
     void Start()
     {
 
-        Doors = new GameObject[4];
-
-        GameObject d = transform.FindChild("Doors").gameObject;
-
-        Doors[0] = d.transform.FindChild("DoorLeft").gameObject;
-        Doors[1] = d.transform.FindChild("DoorTop").gameObject;
-        Doors[2] = d.transform.FindChild("DoorRight").gameObject;
-        Doors[3] = d.transform.FindChild("DoorBottom").gameObject;
-
-        GameObject LeftDoor = Instantiate(Door);
-        GameObject RightDoor = Instantiate(Door);
-        GameObject TopDoor = Instantiate(Door);
-        GameObject BottomDoor = Instantiate(Door);
-
-        LeftDoor.transform.parent = Doors[0].transform;
-        RightDoor.transform.parent = Doors[2].transform;
-        TopDoor.transform.parent = Doors[1].transform;
-        BottomDoor.transform.parent = Doors[3].transform;
-
-        LeftDoor.transform.localPosition = new Vector3(0, 0, 0);
-        RightDoor.transform.localPosition = new Vector3(0, 0, 0);
-        TopDoor.transform.localPosition = new Vector3(0, 0, 0);
-        BottomDoor.transform.localPosition = new Vector3(0, 0, 0);
-
-        LeftDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
-        TopDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
-        RightDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
-        BottomDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
     }
 
     // Update is called once per frame
@@ -99,6 +72,77 @@ public class RoomScript : MonoBehaviour
         InitTiles(2, t.transform.FindChild("Row 5").gameObject);
         InitTiles(1, t.transform.FindChild("Row 6").gameObject);
         InitTiles(0, t.transform.FindChild("Row 7").gameObject);
+
+        Doors = new GameObject[4];
+
+        GameObject d = transform.FindChild("Doors").gameObject;
+
+        Doors[0] = d.transform.FindChild("DoorLeft").gameObject;
+        Doors[1] = d.transform.FindChild("DoorTop").gameObject;
+        Doors[2] = d.transform.FindChild("DoorRight").gameObject;
+        Doors[3] = d.transform.FindChild("DoorBottom").gameObject;
+
+        Colliders = new GameObject[8];
+
+        GameObject c = transform.FindChild("WallCollision").gameObject;
+
+        Colliders[0] = c.transform.FindChild("TopLeft").gameObject;
+        Colliders[1] = c.transform.FindChild("TopRight").gameObject;
+        Colliders[2] = c.transform.FindChild("RightTop").gameObject;
+        Colliders[3] = c.transform.FindChild("RightBottom").gameObject;
+        Colliders[4] = c.transform.FindChild("BottomRight").gameObject;
+        Colliders[5] = c.transform.FindChild("BottomLeft").gameObject;
+        Colliders[6] = c.transform.FindChild("LeftBottom").gameObject;
+        Colliders[7] = c.transform.FindChild("LeftTop").gameObject;
+
+        if (num != 5 && num != 6 && num != 1)
+        {
+            GameObject TopDoor = Instantiate(Door);
+            TopDoor.transform.parent = Doors[1].transform;
+            TopDoor.transform.localPosition = new Vector3(0, 0, 0);
+            TopDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            Colliders[0].transform.localScale = new Vector3(8, 1.5f, 1);
+            Colliders[0].transform.localPosition = new Vector3(-2.5f, 4.25f, 0);
+        }
+        if(num != 5 && num != 7 && num != 4)
+        {
+            GameObject LeftDoor = Instantiate(Door);
+            LeftDoor.transform.parent = Doors[0].transform;
+            LeftDoor.transform.localPosition = new Vector3(0, 0, 0);
+            LeftDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            Colliders[7].transform.localScale = new Vector3(1.5f, 5f, 1);
+            Colliders[7].transform.localPosition = new Vector3(-6.75f, -1f, 0);
+        }
+        if(num != 6 && num != 8 && num != 2)
+        {
+            GameObject RightDoor = Instantiate(Door);
+            RightDoor.transform.parent = Doors[2].transform;
+            RightDoor.transform.localPosition = new Vector3(0, 0, 0);
+            RightDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            Colliders[3].transform.localScale = new Vector3(1.5f, 5f, 1);
+            Colliders[3].transform.localPosition = new Vector3(6.75f, 1f, 0);
+        }
+        if (num != 7 && num != 8 && num != 3)
+        {
+            GameObject BottomDoor = Instantiate(Door);
+            BottomDoor.transform.parent = Doors[3].transform;
+            BottomDoor.transform.localPosition = new Vector3(0, 0, 0);
+            BottomDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+        else
+        {
+            Colliders[6].transform.localScale = new Vector3(8, 1.5f, 1);
+            Colliders[6].transform.localPosition = new Vector3(-2.5f, -4.25f, 0);
+        }
 
         Color32[] pixels = room.GetPixels32();
 
