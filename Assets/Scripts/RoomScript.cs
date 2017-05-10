@@ -13,6 +13,13 @@ public class RoomPrefabs
     public GameObject[] threebythree;
 }
 
+[System.Serializable]
+public struct Tiles
+{
+    public GameObject Tile;
+    public bool IsOccupied;
+}
+
 public class RoomScript : MonoBehaviour
 {
 
@@ -22,7 +29,8 @@ public class RoomScript : MonoBehaviour
 
     private GameObject[] Colliders;
     private GameObject[] Doors;
-    private GameObject[][] Tiles;
+    private Tiles[][] Tiles;
+    
 
     List<GameObject> Interactables = new List<GameObject>();
 
@@ -40,27 +48,33 @@ public class RoomScript : MonoBehaviour
 
     void InitTiles(int i, GameObject g)
     {
-        Tiles[i][0] = g.transform.FindChild("1").gameObject;
-        Tiles[i][1] = g.transform.FindChild("2").gameObject;
-        Tiles[i][2] = g.transform.FindChild("3").gameObject;
-        Tiles[i][3] = g.transform.FindChild("4").gameObject;
-        Tiles[i][4] = g.transform.FindChild("5").gameObject;
-        Tiles[i][5] = g.transform.FindChild("6").gameObject;
-        Tiles[i][6] = g.transform.FindChild("7").gameObject;
-        Tiles[i][7] = g.transform.FindChild("8").gameObject;
-        Tiles[i][8] = g.transform.FindChild("9").gameObject;
-        Tiles[i][9] = g.transform.FindChild("10").gameObject;
-        Tiles[i][10] = g.transform.FindChild("11").gameObject;
-        Tiles[i][11] = g.transform.FindChild("12").gameObject;
+        Tiles[i][0].Tile = g.transform.FindChild("1").gameObject;
+        Tiles[i][1].Tile = g.transform.FindChild("2").gameObject;
+        Tiles[i][2].Tile = g.transform.FindChild("3").gameObject;
+        Tiles[i][3].Tile = g.transform.FindChild("4").gameObject;
+        Tiles[i][4].Tile = g.transform.FindChild("5").gameObject;
+        Tiles[i][5].Tile = g.transform.FindChild("6").gameObject;
+        Tiles[i][6].Tile = g.transform.FindChild("7").gameObject;
+        Tiles[i][7].Tile = g.transform.FindChild("8").gameObject;
+        Tiles[i][8].Tile = g.transform.FindChild("9").gameObject;
+        Tiles[i][9].Tile = g.transform.FindChild("10").gameObject;
+        Tiles[i][10].Tile = g.transform.FindChild("11").gameObject;
+        Tiles[i][11].Tile = g.transform.FindChild("12").gameObject;
     }
 
     public void init(int num, Texture2D room)
     {
-        Tiles = new GameObject[7][];
+        Tiles = new Tiles[7][];
 
         for (int i = 0; i < Tiles.Length; i++)
         {
-            Tiles[i] = new GameObject[12];
+            Tiles[i] = new Tiles[12];
+
+            for(int j = 0; j < Tiles[i].Length; j++)
+            {
+                Tiles[i][j].IsOccupied = false;
+            }
+
         }
 
         GameObject t = transform.FindChild("Tiles").gameObject;
@@ -150,18 +164,45 @@ public class RoomScript : MonoBehaviour
         {
             for (int j = 0; j < 12; j++)
             {
-                spawnTiles(pixels[(i * 12) + j], Tiles[i][j]);
+                if(Tiles[i][j].IsOccupied == false)
+                    spawnTiles(pixels, i, j);
             }
         }
     }
 
-    private void spawnTiles(Color32 c, GameObject t)
+    private void spawnTiles(Color32[] c, int i, int j)
     {
         foreach (RoomPrefabs r in RoomPrefabs)
         {
-            if (c.Equals(r.color))
+            if (c[(i * 12) + j].Equals(r.color))
             {
-                placeObject(r, t);
+                int num = 0;
+
+                if (j < 11) {
+                    if (c[(i * 12) + (j + 1)].Equals(r.color))
+                    {
+                        num = 1;
+                        if (i < 6)
+                        {
+                            if(c[((i + 1) * 12) + (j)].Equals(r.color))
+                            {
+                                num = 3;
+                                if(c[((i + 1) * 12) + (j + 1)].Equals(r.color))
+                                {
+                                    num = 4;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (i < 6)
+                {
+                    if (c[((i + 1) * 12) + (j)].Equals(r.color))
+                    {
+                        num = 2;
+                    }
+                }
+                placeObject(r, i, j, num);
             }
         }
     }
@@ -171,18 +212,98 @@ public class RoomScript : MonoBehaviour
         //todo, disable all visuals for room, keep collisions enabled for pathing?
     }
 
-    void placeObject(RoomPrefabs room, GameObject t)
+    void placeObject(RoomPrefabs room, int i, int j, int num)
     {
-        GameObject g = Instantiate(room.onebyone[Random.Range(0, room.onebyone.Length - 1)]);
-        g.transform.parent = t.transform;
-
-        g.transform.localPosition = new Vector3(0, 0, 0);
-        g.transform.rotation = new Quaternion(0, 0, 0, 0);
-
-        if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
+        if (num == 4 && room.twobytwo.Length == 0)
         {
-            Interactables.Add(g);
+            num = 3;
         }
+        if(num == 3 && room.onebytwo.Length == 0 || num == 2 && room.onebytwo.Length == 0)
+        {
+            num = 1;
+        }
+        if(num == 1 && room.twobyone.Length == 0)
+        {
+            num = 0;
+        }
+
+        if(num == 4)
+        {
+            GameObject g = Instantiate(room.twobytwo[Random.Range(0, room.twobytwo.Length - 1)]);
+            g.transform.parent = Tiles[i][j].Tile.transform;
+            Tiles[i][j].IsOccupied = true;
+            Tiles[i + 1][j].IsOccupied = true;
+            Tiles[i][j + 1].IsOccupied = true;
+            Tiles[i + 1][j + 1].IsOccupied = true;
+
+            g.transform.localPosition = new Vector3(0, 0, 0);
+            g.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+            if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
+            {
+                Interactables.Add(g);
+            }
+        }
+        else
+        {
+            int n = 0;
+            if (num == 3)
+                n = Random.Range(0, 2);
+            else if (num == 2)
+            {
+                n = Random.Range(0, 1);
+                n *= 2;
+            }
+            else
+                n = Random.Range(0, num);
+            if(n == 0)
+            {
+                GameObject g = Instantiate(room.onebyone[Random.Range(0, room.onebyone.Length - 1)]);
+                g.transform.parent = Tiles[i][j].Tile.transform;
+                Tiles[i][j].IsOccupied = true;
+
+                g.transform.localPosition = new Vector3(0, 0, 0);
+                g.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
+                {
+                    Interactables.Add(g);
+                }
+            }
+            else if (n == 1)
+            {
+                GameObject g = Instantiate(room.twobyone[Random.Range(0, room.twobyone.Length - 1)]);
+                g.transform.parent = Tiles[i][j].Tile.transform;
+                Tiles[i][j].IsOccupied = true;
+                Tiles[i + 1][j].IsOccupied = true;
+
+                g.transform.localPosition = new Vector3(0, 0, 0);
+                g.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
+                {
+                    Interactables.Add(g);
+                }
+            }
+            else if (n == 2)
+            {
+                GameObject g = Instantiate(room.onebytwo[Random.Range(0, room.onebytwo.Length - 1)]);
+                g.transform.parent = Tiles[i][j].Tile.transform;
+                Tiles[i][j].IsOccupied = true;
+                Tiles[i][j+1].IsOccupied = true;
+
+                g.transform.localPosition = new Vector3(0, 0, 0);
+                g.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
+                {
+                    Interactables.Add(g);
+                }
+            }
+
+        }
+
+        
     }
 
     void placeHazards()
