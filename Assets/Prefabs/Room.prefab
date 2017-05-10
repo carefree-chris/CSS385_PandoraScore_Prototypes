@@ -685,7 +685,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4793071756250160}
-  - component: {fileID: 61537382491025358}
   - component: {fileID: 114054136801865314}
   m_Layer: 0
   m_Name: Room
@@ -3439,20 +3438,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!61 &61537382491025358
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1372866923475536}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
 --- !u!61 &61619690742505434
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -3520,10 +3505,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf41fb02cd93cf4cabe2db95573f466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomPrefabs:
+  - color:
+      serializedVersion: 2
+      rgba: 4294901760
+    onebyone:
+    - {fileID: 1409780525653742, guid: b0c096b54bf634d4ea557772962cf68a, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4294967040
+    onebyone:
+    - {fileID: 1409780525653742, guid: b0c096b54bf634d4ea557772962cf68a, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4294901860
+    onebyone:
+    - {fileID: 1409780525653742, guid: b0c096b54bf634d4ea557772962cf68a, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4278190335
+    onebyone:
+    - {fileID: 1324671779150774, guid: 7cb4d07fe7ae4f34a95604e3ca27616b, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4294902015
+    onebyone:
+    - {fileID: 1324671779150774, guid: 7cb4d07fe7ae4f34a95604e3ca27616b, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4278255615
+    onebyone:
+    - {fileID: 1324671779150774, guid: 7cb4d07fe7ae4f34a95604e3ca27616b, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
+  - color:
+      serializedVersion: 2
+      rgba: 4278255360
+    onebyone:
+    - {fileID: 1527872952517884, guid: c15b30f40eda9104098fbbf83597bdc1, type: 2}
+    onebytwo: []
+    twobyone: []
+    twobytwo: []
+    threebythree: []
   Door: {fileID: 1508593304160710, guid: 535620997a1719e42b87957008201e8e, type: 2}
-  Object1: {fileID: 1324671779150774, guid: 7cb4d07fe7ae4f34a95604e3ca27616b, type: 2}
-  Object2: {fileID: 1409780525653742, guid: b0c096b54bf634d4ea557772962cf68a, type: 2}
-  Object3: {fileID: 1527872952517884, guid: c15b30f40eda9104098fbbf83597bdc1, type: 2}
 --- !u!114 &114339794942127696
 MonoBehaviour:
   m_ObjectHideFlags: 1
