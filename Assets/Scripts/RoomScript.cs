@@ -261,8 +261,6 @@ public class RoomScript : MonoBehaviour
             else
                 n = Random.Range(0, num + 1);
 
-            Debug.Log(i + " " + j + " " + n);
-
             if (n == 0)
             {
                 GameObject g = Instantiate(room.onebyone[Random.Range(0, room.onebyone.Length - 1)]);

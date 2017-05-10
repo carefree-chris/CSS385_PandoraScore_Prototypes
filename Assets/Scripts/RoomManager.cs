@@ -44,47 +44,47 @@ public class RoomManager : MonoBehaviour
                 }
                 else if (i == 0 && j == 0) //top left corner
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(5, RoomImages[num]);
                 }
                 else if (i == 0 && j == collumns - 1) //top right corner
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(6, RoomImages[num]);
                 }
                 else if (i == rows - 1 && j == 0) //bottom left corner
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(7, RoomImages[num]);
                 }
                 else if (i == rows - 1 && j == collumns - 1) //bottom right corner
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(8, RoomImages[num]);
                 }
                 else if (i == 0) //top row
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(1, RoomImages[num]);
                 }
                 else if (i == rows - 1) //bottom row
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(3, RoomImages[num]);
                 }
                 else if (j == 0) //left collumn
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(4, RoomImages[num]);
                 }
                 else if (j == collumns - 1) //right collumn
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(2, RoomImages[num]);
                 }
                 else //middle room
                 {
-                    int num = Random.Range(0, RoomImages.Length - 1);
+                    int num = Random.Range(0, RoomImages.Length);
                     Rooms[i][j].GetComponent<RoomScript>().init(0, RoomImages[num]);
                 }
 
