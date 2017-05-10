@@ -2,35 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomScript : MonoBehaviour {
+[System.Serializable]
+public class RoomPrefabs
+{
+    public Color32 color;
+    public GameObject[] onebyone;
+    public GameObject[] onebytwo;
+    public GameObject[] twobyone;
+    public GameObject[] twobytwo;
+    public GameObject[] threebythree;
+}
+
+public class RoomScript : MonoBehaviour
+{
+
+    public RoomPrefabs[] RoomPrefabs;
 
     public GameObject Door;
-    public GameObject Object1;
-    public GameObject Object2;
-    public GameObject Object3;
 
     private GameObject[] Doors;
     private GameObject[][] Tiles;
 
-	// Use this for initialization
-	void Start () {
-        Tiles = new GameObject[7][];
+    List<GameObject> Interactables = new List<GameObject>();
+
+    // Use this for initialization
+    void Start()
+    {
+
         Doors = new GameObject[4];
-
-        for(int i = 0; i < Tiles.Length; i++)
-        {
-            Tiles[i] = new GameObject[12];
-        }
-
-        GameObject t = transform.FindChild("Tiles").gameObject;
-
-        InitTiles(0, t.transform.FindChild("Row 1").gameObject);
-        InitTiles(1, t.transform.FindChild("Row 2").gameObject);
-        InitTiles(2, t.transform.FindChild("Row 3").gameObject);
-        InitTiles(3, t.transform.FindChild("Row 4").gameObject);
-        InitTiles(4, t.transform.FindChild("Row 5").gameObject);
-        InitTiles(5, t.transform.FindChild("Row 6").gameObject);
-        InitTiles(6, t.transform.FindChild("Row 7").gameObject);
 
         GameObject d = transform.FindChild("Doors").gameObject;
 
@@ -58,14 +57,13 @@ public class RoomScript : MonoBehaviour {
         TopDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
         RightDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
         BottomDoor.transform.localRotation = new Quaternion(0, 0, 0, 0);
-
-        randomTiles();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void InitTiles(int i, GameObject g)
     {
@@ -83,46 +81,74 @@ public class RoomScript : MonoBehaviour {
         Tiles[i][11] = g.transform.FindChild("12").gameObject;
     }
 
+    public void init(int num, Texture2D room)
+    {
+        Tiles = new GameObject[7][];
+
+        for (int i = 0; i < Tiles.Length; i++)
+        {
+            Tiles[i] = new GameObject[12];
+        }
+
+        GameObject t = transform.FindChild("Tiles").gameObject;
+
+        InitTiles(6, t.transform.FindChild("Row 1").gameObject);
+        InitTiles(5, t.transform.FindChild("Row 2").gameObject);
+        InitTiles(4, t.transform.FindChild("Row 3").gameObject);
+        InitTiles(3, t.transform.FindChild("Row 4").gameObject);
+        InitTiles(2, t.transform.FindChild("Row 5").gameObject);
+        InitTiles(1, t.transform.FindChild("Row 6").gameObject);
+        InitTiles(0, t.transform.FindChild("Row 7").gameObject);
+
+        Color32[] pixels = room.GetPixels32();
+
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 12; j++)
+            {
+                spawnTiles(pixels[(i * 12) + j], Tiles[i][j]);
+            }
+        }
+    }
+
+    private void spawnTiles(Color32 c, GameObject t)
+    {
+        foreach (RoomPrefabs r in RoomPrefabs)
+        {
+            if (c.Equals(r.color))
+            {
+                placeObject(r, t);
+            }
+        }
+    }
+
     public void DisableRoom(int i, int j)
     {
         //todo, disable all visuals for room, keep collisions enabled for pathing?
     }
 
-    void randomTiles()
+    void placeObject(RoomPrefabs room, GameObject t)
     {
-        for(int i = 0; i < Tiles.Length; i++)
+        GameObject g = Instantiate(room.onebyone[Random.Range(0, room.onebyone.Length - 1)]);
+        g.transform.parent = t.transform;
+
+        g.transform.localPosition = new Vector3(0, 0, 0);
+        g.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+        if (room == RoomPrefabs[0] || room == RoomPrefabs[1] || room == RoomPrefabs[2])
         {
-            for(int j = 0; j < Tiles[i].Length; j++)
-            {
-                float num = Random.Range(0f, 10f);
-
-                if(num < 1)
-                {
-                    GameObject g = Instantiate(Object1);
-                    g.transform.parent = Tiles[i][j].transform;
-
-                    g.transform.localPosition = new Vector3(0, 0, 0);
-                    g.transform.rotation = new Quaternion(0, 0, 0, 0);
-
-                }
-                else if( num < 2)
-                {
-                    GameObject g = Instantiate(Object2);
-                    g.transform.parent = Tiles[i][j].transform;
-
-                    g.transform.localPosition = new Vector3(0, 0, 0);
-                    g.transform.rotation = new Quaternion(0, 0, 0, 0);
-                }
-                else if (num < 3)
-                {
-                    GameObject g = Instantiate(Object3);
-                    g.transform.parent = Tiles[i][j].transform;
-
-                    g.transform.localPosition = new Vector3(0, 0, 0);
-                    g.transform.rotation = new Quaternion(0, 0, 0, 0);
-                }
-            }
+            Interactables.Add(g);
         }
     }
-}
 
+    void placeHazards()
+    {
+
+    }
+
+    public void placeKey()
+    {
+        int num = Random.Range(0, Interactables.Count - 1);
+        Interactables[num].tag = "HasKey";
+    }
+}

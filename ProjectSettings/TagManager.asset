@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Furniture
   - Distraction
+  - NavigationManager
+  - SolidObject
+  - HasKey
   layers:
   - Default
   - TransparentFX
