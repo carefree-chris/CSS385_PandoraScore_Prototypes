@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
 
@@ -53,6 +54,7 @@ public class UI : MonoBehaviour {
             heart_1.SetActive(false);
             heart_2.SetActive(false);
             heart_3.SetActive(false);
+            SceneManager.LoadScene("Over");
         }
         if (key == 4)
         {
@@ -99,6 +101,7 @@ public class UI : MonoBehaviour {
 
     public void reset()
     {
-        Start();
+        health = 3;
+        key = 0;
     }
 }

@@ -100,6 +100,11 @@ public class RoomManager : MonoBehaviour
         {
             for (int j = 0; j < collumns; j++)
             {
+
+                //TODO Commented out section is original, uncomment and delete lines below to return to original condition
+                //Rooms[i][j].transform.position = new Vector3((j - 2) * 1500, i * -1000, 0);
+                Rooms[i][j].transform.position = new Vector3(((j - 2) * 1500) * sizeModifier, (i * -1000) * sizeModifier, 0);
+
                 if (i == actRow && j == actCol)
                 {
                     //RoomScript.DisableRoom(i, j); todo?

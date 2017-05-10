@@ -4,14 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
-  - enabled: 1
-    path: Assets/Scenes/MonsterAIAndPathfinding.unity
-  - enabled: 1
-    path: Assets/Scenes/RoomPrototype.unity
-  - enabled: 1
-    path: Assets/Scenes/SoundPrototype.unity
-  - enabled: 1
-    path: Assets/Scenes/UI.unity
+  m_Scenes: []

@@ -10,7 +10,7 @@ public class Menu_Controller : MonoBehaviour {
     [SerializeField] private GameObject button2;
     [SerializeField] private GameObject button3;
     [SerializeField] private GameObject button4;
-    [SerializeField] private GameObject button5;
+    //[SerializeField] private GameObject button5;
     [SerializeField] private GameObject button6;
     [SerializeField] private GameObject button7;
     [SerializeField] private GameObject creditsButton;
@@ -95,7 +95,7 @@ public class Menu_Controller : MonoBehaviour {
         button2.SetActive(isVisible);
         button3.SetActive(isVisible);
         button4.SetActive(isVisible);
-        button5.SetActive(isVisible);
+        //button5.SetActive(isVisible);
         button6.SetActive(isVisible);
         button7.SetActive(isVisible);
         creditsButton.SetActive(isVisible);

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Furniture
+  - Distraction
+  - NavigationManager
+  - SolidObject
+  - HasKey
   layers:
   - Default
   - TransparentFX
@@ -15,10 +20,10 @@ TagManager:
   - 
   - Environment
   - Background
-  - 
-  - 
-  - 
-  - 
+  - Monster
+  - FurnitureLayer
+  - Obstacle
+  - Hero
   - 
   - 
   - 
