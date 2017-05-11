@@ -130,8 +130,8 @@ public class RoomScript : MonoBehaviour
         }
         else
         {
-            Colliders[7].transform.localScale = new Vector3(1.5f, 5f, 1);
-            Colliders[7].transform.localPosition = new Vector3(-6.75f, -1f, 0);
+            Colliders[6].transform.localScale = new Vector3(1.5f, 5f, 1);
+            Colliders[6].transform.localPosition = new Vector3(-6.75f, -1f, 0);
         }
         if(num != 6 && num != 8 && num != 2)
         {
@@ -142,8 +142,8 @@ public class RoomScript : MonoBehaviour
         }
         else
         {
-            Colliders[3].transform.localScale = new Vector3(1.5f, 5f, 1);
-            Colliders[3].transform.localPosition = new Vector3(6.75f, 1f, 0);
+            Colliders[2].transform.localScale = new Vector3(1.5f, 5f, 1);
+            Colliders[2].transform.localPosition = new Vector3(6.75f, 1f, 0);
         }
         if (num != 7 && num != 8 && num != 3)
         {
@@ -154,8 +154,8 @@ public class RoomScript : MonoBehaviour
         }
         else
         {
-            Colliders[6].transform.localScale = new Vector3(8, 1.5f, 1);
-            Colliders[6].transform.localPosition = new Vector3(-2.5f, -4.25f, 0);
+            Colliders[5].transform.localScale = new Vector3(8, 1.5f, 1);
+            Colliders[5].transform.localPosition = new Vector3(-2.5f, -4.25f, 0);
         }
 
         Color32[] pixels = room.GetPixels32();
