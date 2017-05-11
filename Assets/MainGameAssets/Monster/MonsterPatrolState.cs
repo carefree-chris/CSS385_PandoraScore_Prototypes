@@ -31,13 +31,13 @@ public class MonsterPatrolState : IMonsterState {
         
 
         //Once we're close enough to a patrol point, we go to the next
-        if ((monster.transform.position - monster.patrolNodes[monster.currentNode].position).magnitude < monster.agent.stoppingDistance)
+        if ((monster.transform.position - monster.patrolNodes[monster.currentNode]).magnitude < monster.agent.stoppingDistance)
         {
             monster.currentNode++;
             if (monster.currentNode >= monster.patrolNodes.Count)
                 monster.currentNode = 0;
 
-            monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].position.x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].position.y);
+            monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].y);
         }
 
         

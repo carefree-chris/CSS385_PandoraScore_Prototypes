@@ -58,8 +58,10 @@ public class MonsterSearchState : IMonsterState {
             return;
         }
 
+        //Debug.Log("Test : " + (monster.transform.position - monster.searchPosition).magnitude + "\nStopping Distance: " + monster.agent.stoppingDistance);
+
         //If we've reached the spot where we last heard/saw the player, check furniture
-        if ((monster.transform.position - monster.searchPosition).magnitude < monster.agent.stoppingDistance)
+        if ((monster.transform.position - monster.searchPosition).magnitude < (monster.agent.stoppingDistance + 1f))
         {
             Collider2D hidingSpot = Physics2D.OverlapCircle(monster.transform.position, 1.5f);
             if (hidingSpot != null && (hidingSpot.transform.tag == "Furniture" || hidingSpot.transform.tag == "HideObject"))
@@ -67,6 +69,7 @@ public class MonsterSearchState : IMonsterState {
                 if (!hidingSpot.gameObject.GetComponent<Furniture_Controller>().GetIsEmpty())
                     Debug.Log("Player Found!"); // TODO change this to fit with Andrue's interactive furniture, and reset level
             }
+            
 
             furnitureIndex = 0;
             monster.furnitureSearchTime = 0f;
@@ -100,7 +103,13 @@ public class MonsterSearchState : IMonsterState {
                 }
             }
 
+
+            if (realFurniture.Count <= 0)
+                Debug.Log("No furniture in room.");
+
             finalFurniture = realFurniture.ToArray();
+
+            
         }
 
         if (finalFurniture == null)
@@ -193,7 +202,7 @@ public class MonsterSearchState : IMonsterState {
     #region State Transitions
     public void ToMonsterPatrolState()
     {
-        monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].position.x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].position.y);
+        monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].y);
         monster.currentState = monster.monsterPatrolState;
     }
 

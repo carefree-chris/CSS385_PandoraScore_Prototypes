@@ -25,7 +25,7 @@ public class MonsterAI : MonoBehaviour {
 
     //List of patrol points, to be added via the inspector. Alternatively, we
     //could have a list of vectors and set that in Start() or Awake().
-    [SerializeField] public List<Transform> patrolNodes;
+    [SerializeField] public List<Vector3> patrolNodes;
     [HideInInspector] public int currentNode = 0;
 
     [SerializeField] public GameObject targetActual;
@@ -50,7 +50,7 @@ public class MonsterAI : MonoBehaviour {
         targetLocation = targetActual.GetComponent<Transform>();
 
         //Start in patrol mode.
-        agent.destination = new Vector3(patrolNodes[currentNode].position.x, proxyLocation.position.y, patrolNodes[currentNode].position.y);
+        agent.destination = new Vector3(patrolNodes[currentNode].x, proxyLocation.position.y, patrolNodes[currentNode].y);
         currentState = monsterPatrolState;
 
 
@@ -104,6 +104,20 @@ public class MonsterAI : MonoBehaviour {
         {
             Debug.DrawRay(transform.position, targetLocation.position - transform.position, Color.blue);
             return false;
+        }
+    }
+
+    public bool AddPatrolPoint(Vector3 point)
+    {
+
+        if (point == null || patrolNodes.Contains(point))
+        {
+            return false;
+        }
+        else
+        {
+            patrolNodes.Add(point);
+            return true;
         }
     }
 

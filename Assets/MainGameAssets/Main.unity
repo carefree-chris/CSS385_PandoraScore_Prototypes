@@ -319,8 +319,8 @@ GameObject:
   - component: {fileID: 1157781982}
   - component: {fileID: 1157781981}
   - component: {fileID: 1157781980}
-  - component: {fileID: 1157781979}
   - component: {fileID: 1157781978}
+  - component: {fileID: 1157781979}
   m_Layer: 10
   m_Name: Monster
   m_TagString: Monster
@@ -345,10 +345,7 @@ MonoBehaviour:
   distractionTime: 0
   furnitureSearchRadius: 40
   patrolNodes:
-  - {fileID: 1908306907}
-  - {fileID: 1838874966}
-  - {fileID: 100938097}
-  - {fileID: 546361565}
+  - {x: 0, y: 0, z: 0}
   currentNode: 0
   targetActual: {fileID: 44205524}
   targetLocation: {fileID: 0}
@@ -370,7 +367,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -535,11 +532,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460554497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: -898, z: 0}
+  m_LocalPosition: {x: 0, y: -1888, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1704058035}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1601966029 stripped
 MonoBehaviour:
@@ -584,9 +581,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 990, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1881571109}
+  - {fileID: 1460554502}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1791598441
 Prefab:
@@ -660,7 +659,7 @@ Transform:
   - {fileID: 100938097}
   - {fileID: 546361565}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1815740324
 Prefab:
@@ -816,12 +815,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1881571105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -900, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10, y: -1890, z: 0}
   m_LocalScale: {x: 900, y: 1, z: 900}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1704058035}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908306906
 GameObject:

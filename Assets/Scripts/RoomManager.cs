@@ -88,9 +88,19 @@ public class RoomManager : MonoBehaviour
                     Rooms[i][j].GetComponent<RoomScript>().init(0, RoomImages[num]);
                 }
 
+
                 //TODO Commented out section is original, uncomment and delete lines below to return to original condition
                 //Rooms[i][j].transform.position = new Vector3((j - 2) * 1500, i * -1000, 0);
                 Rooms[i][j].transform.position = new Vector3(((j - 2) * 1500) * sizeModifier, (i * -1000) * sizeModifier, 0);
+
+                //Add all rooms to our monster's patrol route. TODO - Remove safe room.
+                Vector3 patrolPoint = new Vector3(Rooms[i][j].transform.position.x, Rooms[i][j].transform.position.y, 0f);
+                if (patrolPoint != null)
+                {
+                    GameObject.FindGameObjectWithTag("Monster").GetComponent<MonsterAI>().AddPatrolPoint(patrolPoint);
+                }
+
+
             }
         }
 

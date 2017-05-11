@@ -41,7 +41,7 @@ public class MonsterDistractionState : IMonsterState {
     #region State Transitions
     public void ToMonsterPatrolState()
     {
-        monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].position.x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].position.y);
+        monster.agent.destination = new Vector3(monster.patrolNodes[monster.currentNode].x, monster.proxyLocation.position.y, monster.patrolNodes[monster.currentNode].y);
         monster.currentState = monster.monsterPatrolState;
     }
 
