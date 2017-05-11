@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
+    public int keysHeld;
+    public int cookiesHeld;
+    public int potionsHeld;
+
     //Maximum Movement Values
     public float walkSpeed;
     public float sneakSpeed;
@@ -57,7 +61,6 @@ public class HeroController : MonoBehaviour
     {
         updateMovement();
         goInvisible();
-        searchItem();
 
         //DISPLAY
         NextToHero.text = "Next To " + proximity.ToString();
@@ -87,8 +90,8 @@ public class HeroController : MonoBehaviour
             rb.angularVelocity = 0;
         } 
 
-        Debug.Log(motion);
-        Debug.Log(proximity);
+        //Debug.Log(motion);
+        //Debug.Log(proximity);
 
 
         //Movement
@@ -107,9 +110,16 @@ public class HeroController : MonoBehaviour
             motion = moveState.walk;
             rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * walkSpeed);
         }
-        else if (proximity == nextTo.hide && Input.GetButton("Jump"))
+        else if (proximity == nextTo.hide && Input.GetButtonDown("Jump"))
         {
             motion = moveState.hiding;
+        }
+        else if (motion == moveState.hiding) 
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                motion = moveState.idle;
+            }
         }
         else
         {
@@ -128,19 +138,28 @@ public class HeroController : MonoBehaviour
     {
         if (collision.gameObject.tag == "HideObject")
         {
+            if (Input.GetButtonDown("Jump"))
+            {
+                motion = moveState.hiding;
+                collision.gameObject.GetComponent<HideHero>().Hero = this.gameObject;
+            }
             proximity = nextTo.hide;
         }
-
         if (collision.gameObject.tag == "SearchObject")
         {
+            searchItem(collision);
             proximity = nextTo.search;
         }
-        /*
-        if (collision.gameObject.tag == "UseObject")
+        if (collision.gameObject.tag == "KeyObject")
         {
-
+            bool hasKeyInside = collision.gameObject.GetComponent<KeyObject>().containsKey;
+            if (hasKeyInside && Input.GetButtonDown("Jump"))
+            {
+                collision.gameObject.GetComponent<KeyObject>().containsKey = false;
+                keysHeld++;
+                Debug.Log("Amount of Keys" + keysHeld);
+            }
         }
-        */
     }
 
     private void goInvisible()
@@ -149,6 +168,7 @@ public class HeroController : MonoBehaviour
         //INVISIBILITY
         if (motion == moveState.hiding)
         {
+            gameObject.SetActive(false);
             visible.enabled = false;
         }
         else
@@ -157,11 +177,25 @@ public class HeroController : MonoBehaviour
         }
     }
 
-    private void searchItem()
+    private void searchItem(Collision2D searching)
     {
-        if (proximity == nextTo.search && Input.GetButton("Jump"))
+        if (proximity == nextTo.search && Input.GetButtonDown("Jump")
+            && searching.gameObject.GetComponent<SearchObject>().contents != SearchObject.itemCode.Empty)
         {
             motion = moveState.searching;
+            if (searching.gameObject.GetComponent<SearchObject>().contents ==
+                SearchObject.itemCode.Cookie)
+            {
+                cookiesHeld++;
+                searching.gameObject.GetComponent<SearchObject>().contents = SearchObject.itemCode.Empty;
+            }
+            
+            if (searching.gameObject.GetComponent<SearchObject>().contents ==
+                SearchObject.itemCode.Potion)
+            {
+                potionsHeld++;
+                searching.gameObject.GetComponent<SearchObject>().contents = SearchObject.itemCode.Empty;
+            }
         }
     }
 } 
