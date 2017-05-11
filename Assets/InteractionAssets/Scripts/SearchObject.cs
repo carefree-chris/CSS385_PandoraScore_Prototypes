@@ -7,17 +7,20 @@ public class SearchObject : MonoBehaviour
     public enum itemCode
     {
         Empty,
+        Key,
         Cookie,
         Potion
     }
+    public Transform childSprite;
     public itemCode contents;
     public Color color;
     public Color original;
 
     private void Start()
     {
-        color = GetComponent<SpriteRenderer>().color;
-        original = GetComponent<SpriteRenderer>().color;
+        color = childSprite.GetComponent<SpriteRenderer>().color;
+        original = childSprite.GetComponent<SpriteRenderer>().color;
+        childSprite = transform.GetChild(0);
     }
 
 
@@ -32,16 +35,21 @@ public class SearchObject : MonoBehaviour
         if (contents == itemCode.Cookie)
         {
             color = Color.cyan;
-            GetComponent<SpriteRenderer>().color = color;
+            childSprite.GetComponent<SpriteRenderer>().color = color;
         }
         else if (contents == itemCode.Potion)
         {
             color = Color.green;
-            GetComponent<SpriteRenderer>().color = color;
+            childSprite.GetComponent<SpriteRenderer>().color = color;
+        }
+        else if (contents == itemCode.Key)
+        {
+            color = Color.yellow;
+            childSprite.GetComponent<SpriteRenderer>().color = color;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = original;
+            childSprite.GetComponent<SpriteRenderer>().color = original;
         }
     }
 

@@ -36,9 +36,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4876226540367560}
   - component: {fileID: 61555254007655178}
+  - component: {fileID: 114232382784793190}
   m_Layer: 0
   m_Name: Interactable 1x1
-  m_TagString: Untagged
+  m_TagString: SearchObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +85,21 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &114232382784793190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1409780525653742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c1ae23cd7468947b85877d39b5cf20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childSprite: {fileID: 4496102878344990}
+  contents: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  original: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &212597241865510104
 SpriteRenderer:
   m_ObjectHideFlags: 1
