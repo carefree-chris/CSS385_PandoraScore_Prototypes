@@ -89,7 +89,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow + 1, curCol);
                 RoomManager.DisableRoom(curRow, curCol);
                 curRow++;
-                player.transform.position += new Vector3(0, -.5f, 0);
+                player.transform.position += new Vector3(0, -1.25f, 0);
                 //player.transform.position += new Vector3(0, -200, 0);
                 player.transform.position += new Vector3(0, -200 * RoomManager.sizeModifier, 0);
             }
@@ -101,7 +101,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow, curCol - 1);
                 RoomManager.DisableRoom(curRow, curCol);
                 curCol--;
-                player.transform.position += new Vector3(-.5f, 0, 0);
+                player.transform.position += new Vector3(-1.25f, 0, 0);
                 //player.transform.position += new Vector3(-200, 0, 0);
                 player.transform.position += new Vector3(-200 * RoomManager.sizeModifier, 0, 0);
             }
@@ -113,7 +113,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow - 1, curCol);
                 RoomManager.DisableRoom(curRow, curCol);
                 curRow--;
-                player.transform.position += new Vector3(0, .5f, 0);
+                player.transform.position += new Vector3(0, 1.25f, 0);
                 //player.transform.position += new Vector3(0, 200, 0);
                 player.transform.position += new Vector3(0, 200 * RoomManager.sizeModifier, 0);
             }
@@ -125,7 +125,7 @@ public class CameraScript : MonoBehaviour {
                 RoomManager.EnableRoom(curRow, curCol + 1);
                 RoomManager.DisableRoom(curRow, curCol);
                 curCol++;
-                player.transform.position += new Vector3(.5f, 0, 0);
+                player.transform.position += new Vector3(1.25f, 0, 0);
                 //player.transform.position += new Vector3(200, 0, 0);
                 player.transform.position += new Vector3(200 * RoomManager.sizeModifier, 0, 0);
             }

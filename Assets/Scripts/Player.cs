@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x, transform.position.y + speed * vertical * Time.deltaTime, transform.position.z);
             //}
             animator.SetInteger("Direction", 2);
+            animator.SetBool("IsMoving", true);
         }
         if (vertical < 0)
         {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x, transform.position.y + speed * vertical * Time.deltaTime, transform.position.z);
             //}
             animator.SetInteger("Direction", 0);
+            animator.SetBool("IsMoving", true);
         }
         if (horizontal < 0)
         {
@@ -45,6 +47,7 @@ public class Player : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x + speed * horizontal * Time.deltaTime, transform.position.y, transform.position.z);
             //}
             animator.SetInteger("Direction", 1);
+            animator.SetBool("IsMoving", true);
         }
         if (horizontal > 0)
         {
@@ -53,6 +56,11 @@ public class Player : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x + speed * horizontal * Time.deltaTime, transform.position.y, transform.position.z);
             //}
             animator.SetInteger("Direction", 3);
+            animator.SetBool("IsMoving", true);
+        }
+        if(horizontal + vertical == 0)
+        {
+            animator.SetBool("IsMoving", false);
         }
     }
 
