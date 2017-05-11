@@ -36,8 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4028325852561240}
   - component: {fileID: 212729448377430082}
-  - component: {fileID: 114121723039951804}
-  - component: {fileID: 61353767962716628}
   m_Layer: 0
   m_Name: A
   m_TagString: Untagged
@@ -72,6 +70,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:Assets/Prefabs/Hideable/Hideable 1x1.prefab
 --- !u!61 &61353767962716628
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -112,6 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleRepObj: {fileID: 0}
+=======
+>>>>>>> a2973bc0cba625392e77019fc66afff227a40bc7:Assets/Prefabs/Object1.prefab
 --- !u!212 &212729448377430082
 SpriteRenderer:
   m_ObjectHideFlags: 1

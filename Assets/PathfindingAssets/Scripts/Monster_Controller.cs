@@ -11,10 +11,7 @@ public class Monster_Controller : MonoBehaviour {
     [SerializeField] private float maxDistractionTime = 3f;
     private float distractionTime = 0f;
 
-    //This is a radius in which we'll check for other rooms. For each room
-    //in this radius, we'll cast a ray to see if its in our sightline. If so,
-    //then if we're in the searching state, we'll investigate it.
-    [SerializeField] private float furnitureSearchRadius = 20f;
+    
 
     //For searching furniture
     //public LayerMask furnitureLayers = new LayerMask();
@@ -293,7 +290,7 @@ public class Monster_Controller : MonoBehaviour {
         
         if (potentialFurniture == null)
         {
-            potentialFurniture = Physics2D.OverlapCircleAll(transform.position, furnitureSearchRadius);
+            potentialFurniture = Physics2D.OverlapCircleAll(transform.position, 20f);
 
             for (int i = 0; i < potentialFurniture.Length; i++)
             {
